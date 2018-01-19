@@ -1,0 +1,73 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs02/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470971/Communication.xml?api=v2">
+		<edmx:Include Alias="vCard" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="CQP" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470968/UI.xml?api=v2">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm">
+			<Annotations Target="NorthwindModel.Product">
+				<Annotation Term="UI.DataPoint" Qualifier="KPI">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="KPI Title"/>
+						<PropertyValue Property="Value" Path="UnitsInStock"/>
+						<PropertyValue Property="CriticalityCalculation">
+                            <Record Type="com.sap.vocabularies.UI.v1.CriticalityCalculationType">
+                                <PropertyValue Property="ImprovementDirection" EnumMember="com.sap.vocabularies.UI.v1.ImprovementDirectionType/Maximizing"/>
+                                <PropertyValue Property="ToleranceRangeLowValue" String="3000"/>
+                                <PropertyValue Property="DeviationRangeLowValue" String="4000"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="ValueFormat">
+                            <Record Type="com.sap.vocabularies.UI.v1.NumberFormat">
+                                <!--<PropertyValue Property="ScaleFactor" Decimal="1000"/>-->
+                                <PropertyValue Property="NumberOfFractionalDigits" Int="1"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TrendCalculation">
+                            <Record>
+                                <PropertyValue Property="ReferenceValue" String="85000"/>
+                                <PropertyValue Property="StrongUpDifference" Int="2000.0"/>
+                                <PropertyValue Property="UpDifference" Int="100"/>
+                                <PropertyValue Property="StrongDownDifference" Int="100"/>
+                                <PropertyValue Property="DownDifference" Int="1000"/>
+                            </Record>
+                        </PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ProductName"/>
+							<PropertyValue Property="Label" String="product Name"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="UnitPrice"/>
+							<PropertyValue Property="Label" String="unit prize"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="QuantityPerUnit"/>
+							<PropertyValue Property="Label" String="Quantity per unit"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

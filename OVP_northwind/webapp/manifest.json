@@ -1,0 +1,110 @@
+{
+	"_version": "1.7.0",
+	"start_url": "start.html",
+	"sap.app": {
+		"id": "namespace.OVP_northwind",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "${project.version}"
+		},
+		"title": "{{app_title}}",
+		"description": "{{app_description}}",
+		"ach": "ach",
+		"resources": "resources.json",
+		"dataSources": {
+			"alies": {
+				"uri": "/northwind/V2/Northwind/Northwind.svc/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/alies/metadata.xml",
+					"annotations": [
+						"annotation0"
+					]
+				}
+			},
+			"annotation0": {
+				"type": "ODataAnnotation",
+				"uri": "localService/alies/annotation0.xml",
+				"settings": {
+					"localUri": "localService/alies/annotation0.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "OVP.cardtemplate",
+			"version": "0.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "${sap.ui5.dist.version}",
+			"libs": {
+				"sap.ovp": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"@i18n": {
+				"preload": true,
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"alies": {
+				"dataSource": "alies",
+				"settings": {
+					"defaultCountMode": "Inline"
+				}
+			}
+		},
+		"extends": {
+			"extensions": {}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.fiori": {
+		"registrationIds": [],
+		"archeType": "analytical"
+	},
+	"sap.ovp": {
+		"globalFilterModel": "alies",
+		"globalFilterEntityType": "",
+		"enableLiveFilter": true,
+		"considerAnalyticalParameters": false,
+		"cards": {
+			"namespace_OVP_northwind_card00": {
+				"model": "alies",
+				"template": "sap.ovp.cards.list",
+				"settings": {
+					"title": "{{namespace_OVP_northwind_card00_title}}",
+					"subTitle": "{{namespace_OVP_northwind_card00_subTitle}}",
+					"entitySet": "Products",
+					"addODataSelect": false,
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#KPI",
+					"annotationPath": "com.sap.vocabularies.UI.v1.LineItem",
+					"valueSelectionInfo": "{{namespace_OVP_northwind_card00_valueSelectionInfo}}"
+				}
+			}
+		}
+	}
+}
